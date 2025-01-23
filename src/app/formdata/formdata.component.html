@@ -1,0 +1,53 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label>Product Name:</label>
+    <input class="form-control" formControlName="name" />
+    <div *ngIf="productForm.controls['name'].invalid && productForm.controls['name'].touched" class="error-message">
+      <div *ngIf="productForm.controls['name'].errors?.['required']">Product Name is required.</div>
+      <div *ngIf="productForm.controls['name'].errors?.['minlength']">Product Name must be at least 3 characters long.</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Product Type:</label>
+    <select class="form-control" formControlName="type">
+      <option value="">Select Type</option>
+      <option value="Electronics">Electronics</option>
+      <option value="Books">Books</option>
+      <option value="Clothes">Clothes</option>
+      <option value="Cosmetics">Cosmetics</option>
+    </select>
+    <div *ngIf="productForm.controls['type'].invalid && productForm.controls['type'].touched" class="error-message">
+      Product Type is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Product Details:</label>
+    <textarea class="form-control" formControlName="details"></textarea>
+    <div *ngIf="productForm.controls['details'].invalid && productForm.controls['details'].touched" class="error-message">
+      <div *ngIf="productForm.controls['details'].errors?.['required']">Product Details are required.</div>
+      <div *ngIf="productForm.controls['details'].errors?.['maxlength']">Product Details cannot exceed 500 characters.</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Product Price:</label>
+    <input class="form-control" formControlName="price" type="number" />
+    <div *ngIf="productForm.controls['price'].invalid && productForm.controls['price'].touched" class="error-message">
+      <div *ngIf="productForm.controls['price'].errors?.['required']">Product Price is required.</div>
+      <div *ngIf="productForm.controls['price'].errors?.['pattern']">Product Price must be a valid number (e.g., 99.99).</div>
+      <div *ngIf="productForm.controls['price'].errors?.['negative']">Product Price cannot be negative.</div>
+    </div>
+  </div>
+
+  <!-- <div class="form-group">
+    <label>Product Image:</label>
+    <input type="file" (change)="onFileSelect($event)" />
+    <div *ngIf="productForm.controls['productImage'].invalid && productForm.controls['productImage'].touched" class="error-message">
+      Product Image is required.
+    </div>
+  </div> -->
+
+  <button type="submit" [disabled]="productForm.invalid">Submit</button>
+</form>

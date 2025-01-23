@@ -1,0 +1,146 @@
+{
+  "products": [
+    {
+      "id": "459e",
+      "name": "bhgbhgshgs",
+      "type": "Electronics",
+      "details": "ghsghssysgf",
+      "price": 2341,
+      "productImage": {}
+    },
+    {
+      "id": "ef8f",
+      "name": "gshghsgsh",
+      "type": "Electronics",
+      "details": "ahgahgah",
+      "price": 2345,
+      "productImage": {}
+    },
+    {
+      "id": "573e",
+      "name": "bhsvhsvsv",
+      "type": "Electronics",
+      "details": "bhsvbhshsbs",
+      "price": 12,
+      "productImage": {}
+    },
+    {
+      "id": "b80e",
+      "name": "bhsvhsvsv",
+      "type": "Electronics",
+      "details": "bhsvbhshsbs",
+      "price": 12,
+      "productImage": {}
+    },
+    {
+      "id": "5a30",
+      "name": "bhsvhsvsv",
+      "type": "Electronics",
+      "details": "bhsvbhshsbs",
+      "price": 12,
+      "productImage": {}
+    },
+    {
+      "id": "d7de",
+      "name": "bhsvhsvsv",
+      "type": "Electronics",
+      "details": "bhsvbhshsbs",
+      "price": 12,
+      "productImage": {}
+    },
+    {
+      "id": "3061",
+      "name": "bhsvhsvsv",
+      "type": "Electronics",
+      "details": "bhsvbhshsbs",
+      "price": 12,
+      "productImage": {}
+    },
+    {
+      "id": "707e",
+      "name": "sjhsgbhsgb",
+      "type": "Electronics",
+      "details": "bsghsvs",
+      "price": 12,
+      "productImage": {}
+    },
+    {
+      "id": "1d2d",
+      "name": "sjhsgbhsgb",
+      "type": "Electronics",
+      "details": "bsghsvs",
+      "price": 12,
+      "productImage": {}
+    },
+    {
+      "id": "eb15",
+      "name": "hshghghgd",
+      "type": "Clothes",
+      "details": "sbhbhbsbs",
+      "price": 322,
+      "productImage": {}
+    },
+    {
+      "id": "3b75",
+      "name": "shghgshgshg",
+      "type": "Books",
+      "details": "svhdvhdvhd",
+      "price": 456,
+      "productImage": {}
+    },
+    {
+      "id": "51d1",
+      "name": "hgshgshgsh",
+      "type": "Cosmetics",
+      "details": "hsghgshs",
+      "price": 72672,
+      "productImage": {}
+    },
+    {
+      "id": "cb02",
+      "name": "Jeans Pant",
+      "type": "Clothes",
+      "details": "Blue in color\njeans cloth",
+      "price": 899,
+      "productImage": {}
+    },
+    {
+      "id": "02b5",
+      "name": "HeadPhones",
+      "type": "Electronics",
+      "details": "noise cancellation",
+      "price": 699,
+      "productImage": {}
+    },
+    {
+      "id": "a744",
+      "name": "gsvsvs",
+      "type": "Electronics",
+      "details": "asgysg",
+      "price": 56,
+      "productImage": {}
+    },
+    {
+      "id": "7c0d",
+      "name": "gshsh",
+      "type": "Clothes",
+      "details": "hgssfgfsgf",
+      "price": 456,
+      "productImage": {}
+    },
+    {
+      "id": "1589",
+      "name": "gshgvsh",
+      "type": "Electronics",
+      "details": "sbhbsh",
+      "price": 66
+    },
+    {
+      "id": "090c",
+      "name": "vsgvsgvfs",
+      "type": "Electronics",
+      "details": "hbvahgah",
+      "price": 656
+    }
+  ]
+}

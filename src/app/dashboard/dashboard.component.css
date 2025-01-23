@@ -1,0 +1,74 @@
+.example-container {
+    width: auto;
+    height: 600px;
+    margin: 10px;
+    /* border: 1px solid #555; */
+    background: #eee;
+}
+
+.g1 {
+    margin-left: 35px;
+}
+
+.g2 div {
+    margin-bottom: 20px; /* Add space between each anchor tag */
+    position: relative; /* Position the line relative to the div */
+}
+
+.g2 div:last-child {
+    margin-bottom: 0; /* Remove margin from the last item */
+}
+
+.g2 a {
+    font-size: 18px; /* Increase the size of the anchor tags */
+    text-decoration: none; /* Remove the underline */
+    color: black; /* Set text color to black */
+    font-weight: 400; /* Decrease font weight */
+}
+
+.g2 div::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #ccc; /* Line color */
+    position: absolute;
+    bottom: -5px; /* Position the line below the anchor tag */
+    left: 0;
+}
+
+/* New CSS for Product Cards */
+.product-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 20px; /* Add margin to separate the cards from the edge */
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    width: 200px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff; /* Add background color to the card */
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px 8px 0 0;
+}
+
+.card-body {
+    padding: 8px;
+}
+
+.card-title {
+    font-size: 18px;
+    margin: 0;
+}
+
+.card-text {
+    margin: 4px 0;
+}

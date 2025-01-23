@@ -1,0 +1,31 @@
+<!-- user-dashboard.component.html -->
+<mat-drawer-container class="example-container">
+    <mat-drawer mode="side" opened>
+      <div class="g1">
+        <ul>
+          <li *ngFor="let category of categories">
+            <button (click)="setCategoryId(category.categoryId)">{{ category.categoryName }}</button>
+          </li>
+        </ul>
+      </div>
+    </mat-drawer>
+    <mat-drawer-content>
+      <div *ngIf="products.length > 0; else noProducts">
+        <div class="product-cards">
+          <div class="card" *ngFor="let product of products">
+            <img [src]="'/logo.jpg'" alt="{{ product.name }} image" />
+            <div class="card-body">
+              <h5 class="card-title">{{ product.name }}</h5>
+              <p class="card-text"><strong>Description:</strong> {{ product.description }}</p>
+              <p class="card-text"><strong>Type:</strong> {{ product.category?.categoryName }}</p>
+              <p class="card-text"><strong>Price:</strong> ₹{{ product.price }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #noProducts>
+        <p>No products available for this category.</p>
+      </ng-template>
+    </mat-drawer-content> 
+  </mat-drawer-container>
+  
