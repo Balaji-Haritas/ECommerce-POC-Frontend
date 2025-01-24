@@ -5,6 +5,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 export const routes: Routes = [
   
     {path:'admin' , component:FormdataComponent},
-    {path:'products',  component:DashboardComponent},
+    {path:'products',  component:DashboardComponent}, // route for users
     
 ];
