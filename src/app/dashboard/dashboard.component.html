@@ -2,10 +2,14 @@
 <mat-drawer-container class="example-container">
     <mat-drawer mode="side" opened>
       <div class="g1">
+        <h2>Categories</h2>
         <ul>
           <li *ngFor="let category of categories">
-            <button (click)="setCategoryId(category.categoryId)">{{ category.categoryName }}</button>
+            <button (click)="setCategoryId(category.categoryId)">
+              <i [ngClass]="getCategoryIcon(category.categoryName)"></i> {{ category.categoryName }}
+            </button>
           </li>
+          
         </ul>
       </div>
     </mat-drawer>
@@ -19,9 +23,18 @@
               <p class="card-text"><strong>Description:</strong> {{ product.description }}</p>
               <p class="card-text"><strong>Type:</strong> {{ product.category?.categoryName }}</p>
               <p class="card-text"><strong>Price:</strong> ₹{{ product.price }}</p>
+              <div class="card-actions">
+                <button (click)="addToCart(product)">
+                  <i class="fas fa-shopping-cart"></i> Add to Cart
+                </button>
+                <button (click)="addToWishlist(product)">
+                  <i class="fas fa-heart"></i> Add to Wishlist
+                </button>
+              </div>
             </div>
           </div>
         </div>
+        
       </div>
       <ng-template #noProducts>
         <p>No products available for this category.</p>
