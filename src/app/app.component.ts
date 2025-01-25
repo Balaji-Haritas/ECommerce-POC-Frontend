@@ -3,7 +3,6 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { CommonModule } from '@angular/common';
-import { FormdataComponent } from "./formdata/formdata.component";
 import { HttpClientModule } from '@angular/common/http';
 import { ProductService } from './services/product.service';
 import { CategoryService } from './services/category.service';

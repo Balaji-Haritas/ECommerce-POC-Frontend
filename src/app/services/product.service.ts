@@ -10,8 +10,8 @@ export class ProductService {
   private baseUrl: string = 'https://localhost:7131/api/Product';
   constructor(private http: HttpClient) { }
 
-  // Create a method to submit the form data
-  submitProduct(data: Product): Observable<any> {
+ 
+  addProduct(data: Product): Observable<any> {
     return this.http.post<any>(this.baseUrl, data); 
   }
 
@@ -25,5 +25,4 @@ export class ProductService {
     return this.http.get<Product[]>(`https://localhost:7131/api/Product/category/${type}`); 
   }
 
-  
 }

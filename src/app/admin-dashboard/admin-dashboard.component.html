@@ -1,0 +1,9 @@
+<mat-drawer-container class="example-container">
+  <mat-drawer mode="side" opened>
+    <div class="nav-link" [routerLink]="['add-category']">Add Category</div>
+    <div class="nav-link" [routerLink]="['add-products']">Add Product</div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

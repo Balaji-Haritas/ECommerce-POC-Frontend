@@ -9,16 +9,13 @@
   </div>
 
   <div class="form-group">
-    <label>Product Type:</label>
+    <label>Category Type:</label>
     <select class="form-control" formControlName="type">
       <option value="">Select Type</option>
-      <option value="Electronics">Electronics</option>
-      <option value="Books">Books</option>
-      <option value="Clothes">Clothes</option>
-      <option value="Cosmetics">Cosmetics</option>
+      <option *ngFor="let category of categories" [value]="category.categoryId">{{ category.categoryName }}</option>
     </select>
     <div *ngIf="productForm.controls['type'].invalid && productForm.controls['type'].touched" class="error-message">
-      Product Type is required.
+      Category Type is required.
     </div>
   </div>
 

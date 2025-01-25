@@ -1,0 +1,41 @@
+.example-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+mat-drawer-container {
+  flex: 1;
+  display: flex;
+}
+
+mat-drawer {
+  width: 250px;
+  background-color: #f5f5f5;
+}
+
+mat-drawer-content {
+  flex: 1;
+  padding: 20px;
+  overflow: auto;
+  position: relative;
+}
+
+.nav-link {
+  display: block;
+  padding: 10px 15px;
+  margin: 5px 0;
+  text-align: center;
+  text-decoration: none;
+  color: #007bff;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: background-color 0.3s, border-color 0.3s;
+  background-color: #e0e0e0;
+}
+
+.nav-link:hover {
+  background-color: #d0d0d0;
+  border-color: #007bff;
+}
