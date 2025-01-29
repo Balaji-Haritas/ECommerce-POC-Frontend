@@ -7,6 +7,7 @@ import { CategoryService } from '../services/category.service';
 import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
 import { Category } from '../models/category.models';
+import { CartserviceService } from '../services/cart.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,9 +19,10 @@ export class DashboardComponent {
 addToWishlist(_t22: Product) {
 throw new Error('Method not implemented.');
 }
-addToCart(_t22: Product) {
-throw new Error('Method not implemented.');
-}
+addToCart(product: Product) {
+  this.cartService.addToCart(product);
+  alert(`Product ${product.name} has been added to the cart! Quantity: ${product.quantity}`);
+  }
 
   products: Product[] = [];
 
@@ -28,7 +30,7 @@ throw new Error('Method not implemented.');
 
   allProducts: Product[] = [];
 
-  constructor(private categoryService: CategoryService, private router: Router,private productService:ProductService) { }
+  constructor(private categoryService: CategoryService, private router: Router,private productService:ProductService, private cartService:CartserviceService) { }
 
   ngOnInit(): void {
     this.loadCategories();
@@ -78,17 +80,24 @@ throw new Error('Method not implemented.');
     this.productService.getAllProducts().subscribe(
       data => {
         this.allProducts = data;
-        this.products = this.allProducts; 
+        this.products = this.allProducts;
+        this.products.forEach((a:any)=>{
+          Object.assign(a,{total:a.price})
+        })
       },
       error => {
         console.error('Error fetching all products', error);
       }
     );
   }
+
   loadProducts(categoryId: number): void {
     this.categoryService.getProductsByCategory(categoryId).subscribe(
       data => {
         this.products = data;
+        this.products.forEach((a:any)=>{
+          Object.assign(a,{total:a.price})
+        })
         console.log(data);
       },
       error => {
