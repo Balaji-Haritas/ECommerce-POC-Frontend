@@ -5,6 +5,7 @@ import { FormGroup,FormBuilder,Validators } from '@angular/forms';
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../models/category.models';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {  Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class AddCategoryComponent {
   categoryForm: FormGroup;
   categories: Category[] = [];
 
-  constructor(private fb: FormBuilder,private categoryService:CategoryService) {
+  constructor(private fb: FormBuilder, private categoryService:CategoryService, private router:Router) {
     this.categoryForm = this.fb.group({
       categoryName: ['', Validators.required]
     });
@@ -56,7 +57,7 @@ export class AddCategoryComponent {
           console.log('Category added successfully:', response);
           this.showPopup('Category added successfully!');
           this.categoryForm.reset();
-          this.loadCategories();//to load the new category into db
+          this.loadCategories();
         },
         error => {
           console.error('Error adding category:', error);
@@ -65,6 +66,11 @@ export class AddCategoryComponent {
       );} 
     }
   }
+
+  cancel(): void {
+    this.router.navigate(['/admin/category-management']);
+  }
+
     private showPopup(message: string) {
       this.snackBar.open(message, 'Close', {
         duration: 3000, 

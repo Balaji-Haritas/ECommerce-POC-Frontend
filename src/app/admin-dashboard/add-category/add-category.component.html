@@ -1,4 +1,7 @@
 <div class="form-container">
+  <button class="cancel-icon" (click)="cancel()">
+    <i class="bi bi-x-circle"></i>
+  </button>
   <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
     <div>
       <label for="categoryName">Category Name</label>
