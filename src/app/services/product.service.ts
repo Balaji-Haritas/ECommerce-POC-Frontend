@@ -20,9 +20,18 @@ export class ProductService {
     return this.http.get<Product[]>(this.baseUrl); 
   }
 
-  getProductsByCategoryType(type: string): Observable<Product[]> 
+  getProductsById(Id:number):Observable<Product>
+  {
+    return this.http.get<Product>(`https://localhost:7131/api/Product/${Id}`);
+  }
+
+  getProductByCategoryType(type: string): Observable<Product[]> 
   { 
     return this.http.get<Product[]>(`https://localhost:7131/api/Product/category/${type}`); 
   }
 
+  updateProduct(product:Product):Observable<Product>
+  {
+    return this.http.put<Product>(`https://localhost:7131/api/Product/${product.id}`,product);
+  }
 }
