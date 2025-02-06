@@ -66,22 +66,6 @@ export class AddProductComponent implements OnInit {
     );
   }
 
-  loadProduct(productId:number):void{
-    this.productService.getProductsById(productId).subscribe(
-      (product : Product) =>{
-        this.productForm.patchValue({
-          id:product.id,
-          name:product.name,
-          type:product.categoryId,
-          details:product.description,
-          price:product.price
-        });
-      },error => {
-        console.log('Error Loading Product',error);
-      }
-    )
-  }
-
   loadProduct(productId: number): void {
     this.productService.getProductById(productId).subscribe(
       (product: Product) => {
