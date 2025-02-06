@@ -12,6 +12,7 @@ import { AccountService } from './services/account.service';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, HeaderComponent, FooterComponent, HttpClientModule, CommonModule,RouterModule],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, HttpClientModule, CommonModule,RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
   providers:[ProductService,CategoryService,HttpClient,AccountService]

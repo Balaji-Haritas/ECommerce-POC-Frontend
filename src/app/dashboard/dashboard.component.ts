@@ -29,6 +29,10 @@ addToCart(product: Product) {
   this.cartService.addToCart(product);
   alert(`Product ${product.name} has been added to the cart! Quantity: ${product.quantity}`);
   }
+addToCart(product: Product) {
+  this.cartService.addToCart(product);
+  alert(`Product ${product.name} has been added to the cart! Quantity: ${product.quantity}`);
+  }
 
   products: Product[] = [];
 
@@ -36,6 +40,7 @@ addToCart(product: Product) {
 
   allProducts: Product[] = [];
 
+  constructor(private categoryService: CategoryService, private router: Router,private productService:ProductService, private cartService:CartserviceService) { }
   constructor(private categoryService: CategoryService, private router: Router,private productService:ProductService, private cartService:CartserviceService) { }
 
   ngOnInit(): void {
@@ -90,6 +95,10 @@ addToCart(product: Product) {
         this.products.forEach((a:any)=>{
           Object.assign(a,{total:a.price})
         })
+        this.products = this.allProducts;
+        this.products.forEach((a:any)=>{
+          Object.assign(a,{total:a.price})
+        })
       },
       error => {
         console.error('Error fetching all products', error);
@@ -97,10 +106,14 @@ addToCart(product: Product) {
     );
   }
 
+
   loadProducts(categoryId: number): void {
     this.categoryService.getProductsByCategory(categoryId).subscribe(
       data => {
         this.products = data;
+        this.products.forEach((a:any)=>{
+          Object.assign(a,{total:a.price})
+        })
         this.products.forEach((a:any)=>{
           Object.assign(a,{total:a.price})
         })
