@@ -1,0 +1,26 @@
+<div class="category-management">
+    <header>
+      <h1>Category MU</h1>
+      <button (click)="createNewCategory()">Create New</button>
+    </header>
+    <table>
+      <thead>
+        <tr>
+          <th>Sl. No</th>
+          <th>Category Name</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of categories; let i = index">
+          <td>{{category.categoryId}}</td>
+          <td>{{ category.categoryName }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="deleteCategory(category.categoryId)">
+              <i class="fas fa-trash-alt"></i> 
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
