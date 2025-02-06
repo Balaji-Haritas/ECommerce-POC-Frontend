@@ -1,31 +1,53 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable, signal } from "@angular/core";
-import { map, Observable } from "rxjs";
-import { User } from "../models/user.models";
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Injectable({
     providedIn:'root'
 })
 
 export class AccountService{
+    private token:string | null =null;
+    private userRole:string | null =null;
+    constructor(private http:HttpClient, private route:Router){}
 
-    constructor(private http:HttpClient){}
-    currentUser = signal<User | null>(null);
-
-    login(model:any):Observable<any>{
-        return this.http.post<User>(``,model).pipe(
-            map(user =>{
-               if(user){
-                localStorage.setItem('user',JSON.stringify(user));
-                this.currentUser.set(user);
-               } 
-            })
+    login(credentials:any){
+        return this.http.post(``,credentials).subscribe(
+            (response:any) => {
+                this.token = response.token;
+                this.userRole = response.role;
+                if(this.token){
+                    localStorage.setItem('token',this.token);
+                }
+                if(this.userRole){
+                    localStorage.setItem('role',this.userRole);
+                }if(this.userRole === 'admin'){
+                    this.route.navigate(['admin']);
+                }else{
+                    this.route.navigate(['products']);
+                }
+            }
         );
     }
 
+    getToken(){
+        return this.token || localStorage.getItem('token') || '';
+    }
+
+    getUserRole():string | null{
+        return this.userRole || localStorage.getItem('role') || '';
+    }
+
+    isLoggedIn(){
+        return !!this.getToken();
+    }
+
     logout(){
-        localStorage.removeItem('user');
-        this.currentUser.set(null);
+        this.token = null;
+        this.userRole = null;
+        localStorage.removeItem('token');
+        localStorage.removeItem('role');
+        this.route.navigate(['login']);
     }
 
 }

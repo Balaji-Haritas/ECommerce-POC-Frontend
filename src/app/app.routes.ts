@@ -10,8 +10,7 @@ import { LoginComponent } from './header/login/login.component';
 import { SignupComponent } from './header/signup/signup.component';
 
 export const routes: Routes = [
-    {path:'',redirectTo:'products',pathMatch:'full'},
-    {path:'',redirectTo:'products',pathMatch:'full'},
+
     {path:'admin' , component:AdminDashboardComponent,children:[
        
         {path:'category-management',component:CategoryManagmentComponent},
@@ -19,19 +18,10 @@ export const routes: Routes = [
         {path:'product-management',component:ProductManagmentComponent}, 
         {path:'add-product', component:AddProductComponent},
         {path:'add-product/:id', component: AddProductComponent},
-         
-       // {path:'edit-category/:id',component:AddCategoryComponent}
-                  
-       
-        {path:'category-management',component:CategoryManagmentComponent},
-        {path:'add-category', component:AddCategoryComponent},
-        {path:'product-management',component:ProductManagmentComponent}, 
-        {path:'add-product', component:AddProductComponent},
-        {path:'add-product/:id', component: AddProductComponent},
-         
-       // {path:'edit-category/:id',component:AddCategoryComponent}
-                  
+
     ]},
+
+    {path:'',redirectTo:'products',pathMatch:'full'},
     {path:'products',  component:DashboardComponent}, 
     {path:'cart', component:AddToCartComponent},
     {path:'login',component:LoginComponent},

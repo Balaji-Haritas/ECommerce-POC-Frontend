@@ -8,17 +8,17 @@ import { AccountService } from '../services/account.service';
   selector: 'app-header',
   imports: [CommonModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
   public totalCountOfCartProducts:number=0;
   isLoggedIn = false;
  
-  constructor(private router: Router,private cartService:CartserviceService, private accService:AccountService) {
-    this.isLoggedIn = !!localStorage.getItem('userToken');
-  }
+  constructor(private router: Router,private cartService:CartserviceService, private accService:AccountService) {}
 
   ngOnInit(){
+   
+   this.isLoggedIn = !!localStorage.getItem('userToken');
    this.cartService.getProducts().subscribe(
     res=>{
       this.totalCountOfCartProducts=res.length

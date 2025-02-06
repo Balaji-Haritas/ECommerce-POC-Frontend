@@ -11,17 +11,8 @@ import { AccountService } from '../../services/account.service';
 export class LoginComponent {
   model:any = {};
   constructor(private accontService:AccountService){}
-  loggedIn = false;
 
   login(){
-    this.accontService.login(this.model).subscribe({
-      next:response =>{
-        console.log(response);
-        this.loggedIn= true;
-      },error:err =>{
-        console.log(err);
-      }
-
-    })
+    
   }
 }
