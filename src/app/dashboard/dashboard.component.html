@@ -1,44 +1,40 @@
-<!-- user-dashboard.component.html -->
 <mat-drawer-container class="example-container">
-    <mat-drawer mode="side" opened>
-      <div class="g1">
-        <h2>Categories</h2>
-        <ul>
-          <li *ngFor="let category of categories">
-            <button (click)="setCategoryId(category.categoryId)">
-              <i [ngClass]="getCategoryIcon(category.categoryName)"></i> {{ category.categoryName }}
-            </button>
-          </li>
-          
-        </ul>
-      </div>
-    </mat-drawer>
-    <mat-drawer-content>
-      <div *ngIf="products.length > 0; else noProducts">
-        <div class="product-cards">
-          <div class="card" *ngFor="let product of products">
-            <img [src]="'/logo.jpg'" alt="{{ product.name }} image" />
-            <div class="card-body">
-              <h5 class="card-title">{{ product.name }}</h5>
-              <p class="card-text"><strong>Description:</strong> {{ product.description }}</p>
-              <p class="card-text"><strong>Type:</strong> {{ product.category?.categoryName }}</p>
-              <p class="card-text"><strong>Price:</strong> ₹{{ product.price }}</p>
-              <div class="card-actions">
-                <button (click)="addToCart(product)">
-                  <i class="fas fa-shopping-cart"></i> Add to Cart
-                </button>
-                <button (click)="addToWishlist(product)">
-                  <i class="fas fa-heart"></i> Add to Wishlist
-                </button>
-              </div>
+  <mat-drawer mode="side" opened>
+    <div class="g1">
+      <h2>Categories</h2>
+      <ul>
+        <li *ngFor="let category of categories">
+          <button (click)="setCategoryId(category.categoryId)">
+            <i [ngClass]="getCategoryIcon(category.categoryName)"></i> {{ category.categoryName }}
+          </button>
+        </li>
+      </ul>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div *ngIf="products.length > 0; else noProducts">
+      <div class="product-cards">
+        <div class="card" *ngFor="let product of products">
+          <img [src]="product.imageUrl" class="product-image" alt="{{ product.name }}" />
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text"><strong>Description:</strong> {{ product.description }}</p>
+            <p class="card-text"><strong>Type:</strong> {{ product.category?.categoryName }}</p>
+            <p class="card-text"><strong>Price:</strong> ₹{{ product.price }}</p>
+            <div class="card-actions">
+              <button matTooltip="Add to Cart" (click)="addToCart(product)">
+                <i class="fas fa-shopping-cart"></i>
+              </button>
+              <button matTooltip="Add to Wishlist" (click)="addToWishlist(product)">
+                <i class="fas fa-heart"></i>
+              </button>
             </div>
           </div>
         </div>
-        
       </div>
-      <ng-template #noProducts>
-        <p>No products available for this category.</p>
-      </ng-template>
-    </mat-drawer-content> 
-  </mat-drawer-container>
-  
+    </div>
+    <ng-template #noProducts>
+      <p>No products available for this category.</p>
+    </ng-template>
+  </mat-drawer-content>
+</mat-drawer-container>

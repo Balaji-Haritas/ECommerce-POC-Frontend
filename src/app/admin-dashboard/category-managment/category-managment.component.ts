@@ -37,8 +37,18 @@ export class CategoryManagmentComponent implements OnInit{
     this.router.navigate(['admin/add-category']);   
   }
 
-  deleteCategory(id: number): void {
-    
+  deleteCategory(categoryId: number) {
+    this.categoryService.deleteCategory(categoryId).subscribe(
+      response => {
+        console.log('Category deleted successfully:', response);
+        // this.showPopup('Category deleted successfully!');
+        this.loadCategories();
+      },
+      error => {
+        console.error('Error deleting category:', error);
+        // this.showPopup('Error deleting category!');
+      }
+    );
   }
 }
 

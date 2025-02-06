@@ -1,25 +1,24 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormGroup,FormBuilder,Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../models/category.models';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import {  Router } from '@angular/router';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-category',
-  imports: [ReactiveFormsModule,CommonModule ],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './add-category.component.html',
-  styleUrl: './add-category.component.css'
+  styleUrls: ['./add-category.component.css'] // Corrected 'styleUrl' to 'styleUrls'
 })
 export class AddCategoryComponent {
   private snackBar = inject(MatSnackBar);
   categoryForm: FormGroup;
   categories: Category[] = [];
 
-  constructor(private fb: FormBuilder, private categoryService:CategoryService, private router:Router) {
+  constructor(private fb: FormBuilder, private categoryService: CategoryService, private router: Router) {
     this.categoryForm = this.fb.group({
       categoryName: ['', Validators.required]
     });
@@ -45,36 +44,39 @@ export class AddCategoryComponent {
       const categoryName = this.categoryForm.value.categoryName.trim();
       const categoryExists = this.categories.some(category => category.categoryName.toLowerCase() === categoryName.toLowerCase());
 
-      if (categoryExists){
-        this.showPopup('Category already Exists.Please enter a different category name.');
-      }else {
+      if (categoryExists) {
+        this.showPopup('Category already exists. Please enter a different category name.');
+      } else {
         const newCategory: Category = {
-          categoryId:0,
+          categoryId: 0,
           categoryName: categoryName
         };
         this.categoryService.addCategory(newCategory).subscribe(
-        response => {
-          console.log('Category added successfully:', response);
-          this.showPopup('Category added successfully!');
-          this.categoryForm.reset();
-          this.loadCategories();
-        },
-        error => {
-          console.error('Error adding category:', error);
-          this.showPopup('Error adding category!');
-        }
-      );} 
+          response => {
+            console.log('Category added successfully:', response);
+            this.showPopup('Category added successfully!');
+            this.categoryForm.reset();
+            this.loadCategories();
+          },
+          error => {
+            console.error('Error adding category:', error);
+            this.showPopup('Error adding category!');
+          }
+        );
+      }
     }
   }
+
+  
 
   cancel(): void {
     this.router.navigate(['/admin/category-management']);
   }
 
-    private showPopup(message: string) {
-      this.snackBar.open(message, 'Close', {
-        duration: 3000, 
-        verticalPosition: 'top', 
-      });
-    }
-  } 
+  private showPopup(message: string) {
+    this.snackBar.open(message, 'Close', {
+      duration: 3000,
+      verticalPosition: 'top',
+    });
+  }
+}

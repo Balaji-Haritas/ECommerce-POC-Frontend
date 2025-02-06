@@ -8,10 +8,16 @@ import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
 import { Category } from '../models/category.models';
 import { CartserviceService } from '../services/cart.service';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [MatSidenavModule,RouterModule,MatIconModule,CommonModule],
+  imports: [
+    MatSidenavModule,
+    RouterModule,
+    MatIconModule,
+    MatTooltipModule,
+    CommonModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })

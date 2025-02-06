@@ -8,36 +8,44 @@ import { CommonModule } from '@angular/common';
   selector: 'app-product-managment',
   imports: [CommonModule],
   templateUrl: './product-managment.component.html',
-  styleUrl: './product-managment.component.css'
+  styleUrls: ['./product-managment.component.css'] // Corrected 'styleUrl' to 'styleUrls'
 })
 export class ProductManagmentComponent {
-  products : Product[] = [];
+  products: Product[] = [];
 
-  constructor(private router:Router , private productService:ProductService){}
+  constructor(private router: Router, private productService: ProductService) {}
 
-  ngOnInit():void{
+  ngOnInit(): void {
     this.loadProducts();
   }
 
-  loadProducts(){
+  loadProducts() {
     this.productService.getAllProducts().subscribe(
       data => {
         this.products = data;
-      },error => {
-        console.log('Error Fetching Producta',error);
+      },
+      error => {
+        console.log('Error Fetching Products', error);
       }
-    )
+    );
   }
 
-  createNewProduct(){
+  createNewProduct() {
     this.router.navigate(['admin/add-product']);
   }
 
-  editProduct(id:number):void{
-    this.router.navigate(['admin/add-product',id])
+  editProduct(id: number): void {
+    this.router.navigate(['admin/add-product', id]);
   }
 
-  deleteProduct(id:number):void{
-    
+  deleteProduct(id: number): void {
+    this.productService.deleteProduct(id).subscribe(
+      () => {
+        this.loadProducts();
+      },
+      error => {
+        console.log('Error deleting product:', error);
+      }
+    );
   }
 }

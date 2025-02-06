@@ -12,15 +12,13 @@
       <li><a href="/contact">Contact</a></li>
     </ul>
     <div class="actions">
-      <!-- <a href="/cart" class="cart-link">
-        <i class="fas fa-shopping-cart"></i> Cart
-      </a> -->
 
-      <button routerLink="cart" class="btn btn-primary" (click)="navigateToCart()">
+    <button routerLink="cart" class="btn btn-primary" (click)="navigateToCart()">
         <i style="font-size: 30px;" class="fas fa-cart-plus"></i>
         <div style="font-size: 10px;" class="badge bg-danger">{{totalCountOfCartProducts}}</div>
     </button>
-      <!-- <a href="/login" class="login-button">Login</a> -->
+    <button *ngIf="!isLoggedIn" routerLink="login" class="btn btn-secondary" (click)="navigateToLoginPage()">Login</button>
+    <button *ngIf="isLoggedIn" (click)="logout()" class="btn btn-secondary">Logout</button>
     </div>
   </nav>
 </header>    

@@ -1,7 +1,8 @@
-<button class="cancel-icon" (click)="cancel()">
-  <i class="bi bi-x-circle"></i>
-</button>
-<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="productForm" (ngSubmit)="onSubmit(fileInput)">
+  <button class="cancel-icon" (click)="cancel()">
+    <i class="bi bi-x-circle"></i>
+  </button>
+  
   <div class="form-group">
     <label>Product Name:</label>
     <input class="form-control" formControlName="name" />
@@ -10,7 +11,7 @@
       <div *ngIf="productForm.controls['name'].errors?.['minlength']">Product Name must be at least 3 characters long.</div>
     </div>
   </div>
-
+ 
   <div class="form-group">
     <label>Category Type:</label>
     <select class="form-control" formControlName="type">
@@ -21,7 +22,7 @@
       Category Type is required.
     </div>
   </div>
-
+ 
   <div class="form-group">
     <label>Product Details:</label>
     <textarea class="form-control" formControlName="details"></textarea>
@@ -30,7 +31,7 @@
       <div *ngIf="productForm.controls['details'].errors?.['maxlength']">Product Details cannot exceed 500 characters.</div>
     </div>
   </div>
-
+ 
   <div class="form-group">
     <label>Product Price:</label>
     <input class="form-control" formControlName="price" type="number" />
@@ -40,14 +41,23 @@
       <div *ngIf="productForm.controls['price'].errors?.['negative']">Product Price cannot be negative.</div>
     </div>
   </div>
+  
+  <div class="form-group">
+    <label>Product Quantity:</label>
+    <input class="form-control" formControlName="quantity" type="number" />
+    <div *ngIf="productForm.controls['quantity'].invalid && productForm.controls['quantity'].touched" class="error-message">
+      <div *ngIf="productForm.controls['quantity'].errors?.['required']">Product Quantity is required.</div>
+      <div *ngIf="productForm.controls['quantity'].errors?.['negative']">Product Quantity cannot be negative.</div>
+    </div>
+  </div>
 
   <div class="form-group">
     <label>Product Image:</label>
-    <!-- <input type="file" (change)="onFileSelect($event)" /> -->
+    <input type="file" (change)="onFileSelect($event)" #fileInput/>
     <div *ngIf="productForm.controls['productImage'].invalid && productForm.controls['productImage'].touched" class="error-message">
       Product Image is required.
     </div>
   </div>
-
-  <button type="submit" [disabled]="productForm.invalid">{{isEditMode? 'Update':'Submit'}}</button>
+ 
+  <button type="submit" [disabled]="productForm.invalid">{{isEditMode ? 'Update' : 'Submit'}}</button>
 </form>
