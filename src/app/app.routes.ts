@@ -8,10 +8,12 @@ import { AddProductComponent } from './admin-dashboard/add-product/add-product.c
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { LoginComponent } from './header/login/login.component';
 import { SignupComponent } from './header/signup/signup.component';
+import { AuthGuard } from './guards/authguard';
+import { HomeComponent } from './header/home/home.component';
 
 export const routes: Routes = [
 
-    {path:'admin' , component:AdminDashboardComponent,children:[
+    {path:'admin' , component:AdminDashboardComponent, children:[
        
         {path:'category-management',component:CategoryManagmentComponent},
         {path:'add-category', component:AddCategoryComponent},
@@ -21,10 +23,12 @@ export const routes: Routes = [
 
     ]},
 
-    {path:'',redirectTo:'products',pathMatch:'full'},
-    {path:'products',  component:DashboardComponent}, 
-    {path:'cart', component:AddToCartComponent},
+    {path:'',redirectTo:'login',pathMatch:'full'},
+    {path:'products',  component:DashboardComponent, canActivate :[AuthGuard]},
+    //{path:'products',  component:DashboardComponent}, 
+    {path:'cart', component:AddToCartComponent,  canActivate:[AuthGuard]},
     {path:'login',component:LoginComponent},
-    {path:'signup',component:SignupComponent}
+    {path:'signup',component:SignupComponent},
+    {path:'home',component:HomeComponent}
 
 ];

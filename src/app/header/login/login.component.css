@@ -1,28 +1,35 @@
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full viewport height */
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+}
+
 .card {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    background-color: #fff;
-    height: 300px; 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .card .form-control {
-    margin-bottom: 10px;
-  }
-  
-  .card .btn {
-    width: 100%;
-  }
-  
-  .card .mt-3 {
-    text-align: center; 
-  }
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #fff;
+  margin: 90px; 
+}
+
+.text-center {
+  text-align: center;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.mt-3 {
+  margin-top: 1rem; 
+}
+
+.mb-3 {
+  margin-bottom: 2rem; 
+}
+
+button:disabled {
+  background-color: #ccc; /* Change background color when disabled */
+  cursor: not-allowed; /* Change cursor to indicate disabled state */
+}

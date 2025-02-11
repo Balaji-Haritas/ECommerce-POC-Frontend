@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder,Validators, ReactiveFormsModule } from '@angular/forms';
+import { AccountService } from '../../services/account.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,11 +11,11 @@ import { FormGroup,FormBuilder,Validators, ReactiveFormsModule } from '@angular/
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css'
 })
-export class SignupComponent {
+export class SignupComponent implements OnInit {
 
   signupForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private accService:AccountService, private route:Router) {}
 
   ngOnInit(): void {
     this.signupForm = this.fb.group({
@@ -21,28 +23,18 @@ export class SignupComponent {
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
-    }, { validator: this.mustMatch('password', 'confirmPassword') });
+    });
   }
 
-  onSubmit(): void {
-    if (this.signupForm.valid) {
-      console.log('Form Submitted!', this.signupForm.value);
+  onSubmit():void{
+    if(this.signupForm.valid){
+      this.accService.register(this.signupForm.value).subscribe(
+        () => {
+          this.route.navigate(['login']);
+        },error => {
+          console.log('Error Regstering',error);
+        }
+      )
     }
-  }
-
-  mustMatch(controlName: string, matchingControlName: string) {
-    return (formGroup: FormGroup) => {
-      const control = formGroup.controls[controlName];
-      const matchingControl = formGroup.controls[matchingControlName];
-
-      if (matchingControl.errors && !matchingControl.errors['mustMatch']) {
-             if (control.value !== matchingControl.value) {
-        matchingControl.setErrors({ mustMatch: true });
-      } else {
-        matchingControl.setErrors(null);
-      }
-    };
-   }
   }
 }

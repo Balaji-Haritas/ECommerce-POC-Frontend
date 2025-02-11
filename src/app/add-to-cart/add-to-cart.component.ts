@@ -32,7 +32,7 @@ export class AddToCartComponent {
         }
        )
       }
-      navigateToOtherPage() {
-        this.router.navigate(['/products']);
-      }
+      // navigateToOtherPage() {
+      //   this.router.navigate(['/products']);
+      // }
 }

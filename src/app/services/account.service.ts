@@ -1,52 +1,45 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
+import { Token } from "../models/product.model";
 
 @Injectable({
-    providedIn:'root'
+    providedIn:'root',
 })
 
 export class AccountService{
     private token:string | null =null;
-    private userRole:string | null =null;
+    //private userRole:string | null =null;
     constructor(private http:HttpClient, private route:Router){}
 
-    login(credentials:any){
-        return this.http.post(``,credentials).subscribe(
-            (response:any) => {
-                this.token = response.token;
-                this.userRole = response.role;
-                if(this.token){
-                    localStorage.setItem('token',this.token);
-                }
-                if(this.userRole){
-                    localStorage.setItem('role',this.userRole);
-                }if(this.userRole === 'admin'){
-                    this.route.navigate(['admin']);
-                }else{
-                    this.route.navigate(['products']);
-                }
-            }
-        );
+    login(credentials: any) {
+        return this.http.post<Token>(`https://localhost:7131/api/Account/login`, credentials);
     }
 
-    getToken(){
-        return this.token || localStorage.getItem('token') || '';
+    register(user: any) {
+        return this.http.post(`https://localhost:7131/api/Account/register`, user);
     }
 
-    getUserRole():string | null{
-        return this.userRole || localStorage.getItem('role') || '';
+
+
+    getToken(): boolean {
+        const token = localStorage.getItem('token');
+        return token !== null && token !== '';
     }
+
+    // getUserRole():string | null{
+    //     return this.userRole || localStorage.getItem('role') || '';
+    // }
 
     isLoggedIn(){
         return !!this.getToken();
     }
 
     logout(){
+        // this.userRole = null;
+        // localStorage.removeItem('role');
         this.token = null;
-        this.userRole = null;
-        localStorage.removeItem('token');
-        localStorage.removeItem('role');
+        localStorage.clear();
         this.route.navigate(['login']);
     }
 

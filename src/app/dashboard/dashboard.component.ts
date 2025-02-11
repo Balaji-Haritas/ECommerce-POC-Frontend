@@ -48,6 +48,7 @@ addToCart(product: Product) {
     this.categoryService.getCategories().subscribe(
       data => {
         this.categories = data;
+        console.log(this.categories);
         this.categories.push({ categoryId: 0, categoryName: 'View All' });
      },
       error => {
@@ -101,6 +102,7 @@ addToCart(product: Product) {
     this.categoryService.getProductsByCategory(categoryId).subscribe(
       data => {
         this.products = data;
+        console.log(this.products);
         this.products.forEach((a:any)=>{
           Object.assign(a,{total:a.price})
         })

@@ -1,17 +1,35 @@
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full viewport height */
-  }
-  
-  .card {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    background-color: #fff;
-  }
-  
-  .text-danger {
-    color: red;
-    font-size: 0.875em;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+}
+
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #fff;
+  margin: 90px; /* Add margin */
+}
+
+.text-center {
+  text-align: center;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.mt-3 {
+  margin-top: 1rem; /* Add space between the button and the sign-up link */
+}
+
+.mb-3 {
+  margin-bottom: 1rem; /* Add space between form groups */
+}
+
+button:disabled {
+  background-color: #ccc; /* Change background color when disabled */
+  cursor: not-allowed; /* Change cursor to indicate disabled state */
+}
