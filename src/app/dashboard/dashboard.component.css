@@ -109,11 +109,14 @@
   padding: 8px;
 }
 
-.card-title {
+.card-title{
+  margin: 4px 0;
   font-size: 18px;
-  margin: 0;
+  color: #0e0101;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-
 .card-text {
   margin: 4px 0;
   font-size: 14px;

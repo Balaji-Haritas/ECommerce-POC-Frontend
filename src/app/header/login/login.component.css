@@ -30,6 +30,6 @@
 }
 
 button:disabled {
-  background-color: #ccc; /* Change background color when disabled */
-  cursor: not-allowed; /* Change cursor to indicate disabled state */
+  background-color: #ccc; 
+  cursor: not-allowed;
 }

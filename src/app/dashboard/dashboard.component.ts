@@ -77,6 +77,8 @@ addToCart(product: Product) {
         return 'fas fa-football-ball'; // FontAwesome Football icon
       case 'cosmetics':
         return 'fas fa-spa'; // FontAwesome Spa icon
+      case 'home & furniture':  
+        return 'fas fa-couch';
       default:
         return 'fas fa-th-large'; // Default Folder icon
     }

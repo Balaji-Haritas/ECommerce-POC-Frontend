@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { Product } from '../../models/product.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import cloudinary from 'cloudinary-core';
+
 
 @Component({
   selector: 'app-add-product',
