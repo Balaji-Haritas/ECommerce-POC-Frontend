@@ -6,6 +6,7 @@ import { CategoryService } from '../../services/category.service';
 import { Category } from '../../models/category.models';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { NotificationService } from '../../notifications/notification.service';
 
 @Component({
   selector: 'app-add-category',
@@ -18,7 +19,8 @@ export class AddCategoryComponent {
   categoryForm: FormGroup;
   categories: Category[] = [];
 
-  constructor(private fb: FormBuilder, private categoryService: CategoryService, private router: Router) {
+  constructor(private fb: FormBuilder, private categoryService: CategoryService, private router: Router,
+    private notificationService:NotificationService) {
     this.categoryForm = this.fb.group({
       categoryName: ['', Validators.required]
     });
@@ -45,7 +47,7 @@ export class AddCategoryComponent {
       const categoryExists = this.categories.some(category => category.categoryName.toLowerCase() === categoryName.toLowerCase());
 
       if (categoryExists) {
-        this.showPopup('Category already exists. Please enter a different category name.');
+        this.notificationService.showWarning('Category already exists. Please enter a different category name.','Close');
       } else {
         const newCategory: Category = {
           categoryId: 0,
@@ -54,13 +56,13 @@ export class AddCategoryComponent {
         this.categoryService.addCategory(newCategory).subscribe(
           response => {
             console.log('Category added successfully:', response);
-            this.showPopup('Category added successfully!');
+            this.notificationService.showSuccess('Category added successfully!','Close');
             this.categoryForm.reset();
             this.loadCategories();
           },
           error => {
             console.error('Error adding category:', error);
-            this.showPopup('Error adding category!');
+            this.notificationService.showError('Error adding category!','Close');
           }
         );
       }
@@ -73,10 +75,10 @@ export class AddCategoryComponent {
     this.router.navigate(['/admin/category-management']);
   }
 
-  private showPopup(message: string) {
-    this.snackBar.open(message, 'Close', {
-      duration: 3000,
-      verticalPosition: 'top',
-    });
-  }
+  // private showPopup(message: string) {
+  //   this.snackBar.open(message, 'Close', {
+  //     duration: 3000,
+  //     verticalPosition: 'top',
+  //   });
+  // }
 }

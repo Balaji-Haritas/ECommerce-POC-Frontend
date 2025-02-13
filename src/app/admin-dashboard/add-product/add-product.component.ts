@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { Product } from '../../models/product.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { NotificationService } from '../../notifications/notification.service';
 
 
 @Component({
@@ -29,7 +30,8 @@ export class AddProductComponent implements OnInit {
     private snackBar: MatSnackBar,
     private router: Router,
     private route: ActivatedRoute,
-    private http: HttpClient
+    private http: HttpClient,
+    private notificationService:NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -113,23 +115,23 @@ export class AddProductComponent implements OnInit {
           if (this.isEditMode) {
             this.productService.updateProduct(productData).subscribe({
               next: (response) => {
-                this.showPopup("Product Updated Successfully");
+                this.notificationService.showSuccess("Product Updated Successfully",'Close');
                 this.router.navigate(['admin/product-managment']);
               },
               error: (err) => {
-                this.showPopup("Error Updating Product");
+                this.notificationService.showError("Error Updating Product",'Close');
               },
             });
           } else {
             this.productService.addProduct(productData).subscribe({
               next: (response) => {
-                this.showPopup('Product submitted successfully');
+                this.notificationService.showSuccess('Product submitted successfully','Close');
                 this.productForm.reset();
                 fileInput.value = '';
                 this.router.navigate(['admin/product-managment']);
               },
               error: (error) => {
-                this.showPopup('Error submitting product');
+                this.notificationService.showError('Error submitting product','Close');
               }
             });
           }
@@ -155,12 +157,5 @@ export class AddProductComponent implements OnInit {
       };
     }
     return null;
-  }
-
-  private showPopup(message: string) {
-    this.snackBar.open(message, 'Close', {
-      duration: 3000,
-      verticalPosition: 'top',
-    });
   }
 }

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder,Validators, ReactiveFormsModule } from '@angular/forms';
 import { AccountService } from '../../services/account.service';
 import { Router } from '@angular/router';
+import { NotificationService } from '../../notifications/notification.service';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class SignupComponent implements OnInit {
 
   signupForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private accService:AccountService, private route:Router) {}
+  constructor(private fb: FormBuilder, private accService:AccountService,
+     private route:Router , private notificationService:NotificationService) {}
 
   ngOnInit(): void {
     this.signupForm = this.fb.group({
@@ -30,9 +32,11 @@ export class SignupComponent implements OnInit {
     if(this.signupForm.valid){
       this.accService.register(this.signupForm.value).subscribe(
         () => {
+          this.notificationService.showSuccess('Signup Succesfull!!. Please Login to Continue','Close');
           this.route.navigate(['login']);
         },error => {
           console.log('Error Regstering',error);
+          this.notificationService.showError('An error occurred!', 'Close');
         }
       )
     }

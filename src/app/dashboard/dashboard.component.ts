@@ -9,6 +9,7 @@ import { ProductService } from '../services/product.service';
 import { Category } from '../models/category.models';
 import { CartserviceService } from '../services/cart.service';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { NotificationService } from '../notifications/notification.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,7 +28,8 @@ throw new Error('Method not implemented.');
 }
 addToCart(product: Product) {
   this.cartService.addToCart(product);
-  alert(`Product ${product.name} has been added to the cart! Quantity: ${product.quantity}`);
+  this.notificationService.showSuccess(`Product ${product.name} has been added to the cart! Quantity: ${product.quantity}`,'Close',3000,'left','top');
+  this.router.navigate(['cart'])
   }
 
   products: Product[] = [];
@@ -36,7 +38,9 @@ addToCart(product: Product) {
 
   allProducts: Product[] = [];
 
-  constructor(private categoryService: CategoryService, private router: Router,private productService:ProductService, private cartService:CartserviceService) { }
+  constructor(private categoryService: CategoryService, private router: Router,
+    private productService:ProductService, private cartService:CartserviceService,
+    private notificationService:NotificationService) { }
 
   ngOnInit(): void {
     this.loadCategories();

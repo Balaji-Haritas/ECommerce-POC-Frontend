@@ -1,7 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
-
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Notification Bar Css */
+.custom-snackbar-success {
+    background-color: #4caf50; /* Green */
+    color: #fff;
+    font-size: 16px;
+    padding: 16px;
+  }
+  
+  .custom-snackbar-error {
+    background-color: #f44336; /* Red */
+    color: #fff;
+    font-size: 16px;
+    padding: 16px;
+  }
+  
+  .custom-snackbar-warning {
+    background-color: #ff9800; /* Orange */
+    color: #fff;
+    font-size: 16px;
+    padding: 16px;
+  }

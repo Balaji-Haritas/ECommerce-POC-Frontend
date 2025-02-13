@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {  Router, RouterModule } from '@angular/router';
 import { Category } from '../../models/category.models';
 import { CategoryService } from '../../services/category.service';
+import { NotificationService } from '../../notifications/notification.service';
 
 @Component({
   selector: 'app-category-managment',
@@ -14,7 +15,8 @@ export class CategoryManagmentComponent implements OnInit{
 
   categories: Category[] = [];
 
-  constructor(private router: Router, private categoryService:CategoryService) {}
+  constructor(private router: Router, private categoryService:CategoryService,
+    private notificationService:NotificationService) {}
 
   ngOnInit(): void {
     this.loadCategories();
@@ -41,12 +43,12 @@ export class CategoryManagmentComponent implements OnInit{
     this.categoryService.deleteCategory(categoryId).subscribe(
       response => {
         console.log('Category deleted successfully:', response);
-        // this.showPopup('Category deleted successfully!');
+        this.notificationService.showSuccess('Category deleted successfully!','Close');
         this.loadCategories();
       },
       error => {
         console.error('Error deleting category:', error);
-        // this.showPopup('Error deleting category!');
+         this.notificationService.showError('Error deleting category!','Close');
       }
     );
   }

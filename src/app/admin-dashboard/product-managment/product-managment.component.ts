@@ -3,6 +3,7 @@ import { Product } from '../../models/product.model';
 import { Router } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
+import { NotificationService } from '../../notifications/notification.service';
 
 @Component({
   selector: 'app-product-managment',
@@ -13,7 +14,8 @@ import { CommonModule } from '@angular/common';
 export class ProductManagmentComponent {
   products: Product[] = [];
 
-  constructor(private router: Router, private productService: ProductService) {}
+  constructor(private router: Router, private productService: ProductService,
+    private notificationService:NotificationService) {}
 
   ngOnInit(): void {
     this.loadProducts();
@@ -41,10 +43,12 @@ export class ProductManagmentComponent {
   deleteProduct(id: number): void {
     this.productService.deleteProduct(id).subscribe(
       () => {
+        this.notificationService.showSuccess('Product Deleted!','Close')
         this.loadProducts();
       },
       error => {
         console.log('Error deleting product:', error);
+        this.notificationService.showError('Error Deleting the Product','Close')
       }
     );
   }
