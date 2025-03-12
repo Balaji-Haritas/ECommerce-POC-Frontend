@@ -10,10 +10,11 @@ import { LoginComponent } from './header/login/login.component';
 import { SignupComponent } from './header/signup/signup.component';
 import { AuthGuard } from './guards/authguard';
 import { HomeComponent } from './header/home/home.component';
+import { AdminGuard } from './guards/adminguard';
 
 export const routes: Routes = [
 
-    {path:'admin' , component:AdminDashboardComponent, children:[
+    {path:'admin' , component:AdminDashboardComponent,canActivate: [AdminGuard], children:[
        
         {path:'category-management',component:CategoryManagmentComponent},
         {path:'add-category', component:AddCategoryComponent},
@@ -29,6 +30,6 @@ export const routes: Routes = [
     {path:'cart', component:AddToCartComponent,  canActivate:[AuthGuard]},
     {path:'login',component:LoginComponent},
     {path:'signup',component:SignupComponent},
-    {path:'home',component:HomeComponent}
+    {path:'home',component:HomeComponent,canActivate:[AuthGuard]}
 
 ];

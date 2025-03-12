@@ -5,7 +5,7 @@
         <img src="\logo.jpg" alt="E-Commerce Logo" />
       </a>
     </div>
-    <ul class="nav-links">
+    <ul class="nav-links" *ngIf="isLoggedIn && userRole === 'Customer'">
       <li><a href="home">Home</a></li>
       <li><a href="products">Shop</a></li>
       <li><a href="/about">About</a></li>
@@ -13,7 +13,7 @@
     </ul>
     <div class="actions">
 
-    <button routerLink="cart" class="btn btn-primary" (click)="navigateToCart()">
+    <button *ngIf="isLoggedIn && userRole === 'Customer'" routerLink="cart" class="btn btn-primary" (click)="navigateToCart()">
         <i style="font-size: 30px;" class="fas fa-cart-plus"></i>
         <div style="font-size: 10px;" class="badge bg-danger">{{totalCountOfCartProducts}}</div>
     </button>

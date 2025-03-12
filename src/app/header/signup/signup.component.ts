@@ -4,6 +4,7 @@ import { FormGroup,FormBuilder,Validators, ReactiveFormsModule } from '@angular/
 import { AccountService } from '../../services/account.service';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../notifications/notification.service';
+import { Role } from '../../models/role.model';
 
 
 @Component({
@@ -15,6 +16,7 @@ import { NotificationService } from '../../notifications/notification.service';
 export class SignupComponent implements OnInit {
 
   signupForm!: FormGroup;
+  roles: Role[] = [];
 
   constructor(private fb: FormBuilder, private accService:AccountService,
      private route:Router , private notificationService:NotificationService) {}
@@ -25,7 +27,19 @@ export class SignupComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
       password: ['', [Validators.required, Validators.minLength(6)]],
+      roleId: ['', Validators.required]
     });
+    this.getRoles();
+  }
+  getRoles():void {
+    this.accService.getRoles().subscribe(
+      (response: any) => {
+        this.roles = response.$values;
+        console.log(this.roles);
+      },error =>{
+        console.log('Error fetiching Roles',error);
+      }
+    )
   }
 
   onSubmit():void{

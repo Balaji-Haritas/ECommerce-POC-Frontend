@@ -33,8 +33,6 @@ export class CategoryManagmentComponent implements OnInit{
     );
   }
 
-
-
   createNewCategory(): void {
     this.router.navigate(['admin/add-category']);   
   }

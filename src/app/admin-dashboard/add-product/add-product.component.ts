@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductService } from '../../services/product.service';
 import { Category } from '../../models/category.models';
 import { CategoryService } from '../../services/category.service';
@@ -27,7 +26,6 @@ export class AddProductComponent implements OnInit {
     private fb: FormBuilder,
     private productService: ProductService,
     private categoryService: CategoryService,
-    private snackBar: MatSnackBar,
     private router: Router,
     private route: ActivatedRoute,
     private http: HttpClient,

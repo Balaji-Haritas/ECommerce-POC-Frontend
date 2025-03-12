@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../models/category.models';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../notifications/notification.service';
 
@@ -15,7 +14,6 @@ import { NotificationService } from '../../notifications/notification.service';
   styleUrls: ['./add-category.component.css'] // Corrected 'styleUrl' to 'styleUrls'
 })
 export class AddCategoryComponent {
-  private snackBar = inject(MatSnackBar);
   categoryForm: FormGroup;
   categories: Category[] = [];
 
@@ -67,18 +65,10 @@ export class AddCategoryComponent {
         );
       }
     }
-  }
-
-  
+  }  
 
   cancel(): void {
     this.router.navigate(['/admin/category-management']);
   }
 
-  // private showPopup(message: string) {
-  //   this.snackBar.open(message, 'Close', {
-  //     duration: 3000,
-  //     verticalPosition: 'top',
-  //   });
-  // }
 }

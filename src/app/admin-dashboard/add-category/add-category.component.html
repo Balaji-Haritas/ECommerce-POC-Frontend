@@ -6,8 +6,9 @@
     <div>
       <label for="categoryName">Category Name</label>
       <input id="categoryName" formControlName="categoryName" placeholder="Enter category name">
-      <div *ngIf="categoryForm.get('categoryName')?.hasError('required')" class="error-message">
-        Category Name is required
+      <div *ngIf="categoryForm.get('categoryName')?.touched && 
+        categoryForm.get('categoryName')?.hasError('required')" class="error-message">
+          Category Name is required
       </div>
     </div>
     <button type="submit" [disabled]="categoryForm.invalid">Submit</button>

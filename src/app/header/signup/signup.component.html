@@ -29,6 +29,15 @@
           <div *ngIf="signupForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters</div>
         </div>
       </div>
+      <div class ="mb-3">
+        <select class="form-control" formControlName="roleId" id="role">
+          <option value="">Select Role</option>
+          <option *ngFor="let role of roles " [value]="role.id">{{ role.roleName }}</option>
+        </select>
+        <div *ngIf="signupForm.controls['roleId'].invalid && signupForm.controls['roleId'].touched" class="text-danger">
+      Role is required.
+    </div>
+      </div>
       <button class="btn btn-outline-success btn-block" type="submit" [disabled]="signupForm.invalid">Sign Up</button>
     </form>
   </div>

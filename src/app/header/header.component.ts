@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ResolveEnd, Router } from '@angular/router';
 import { CartserviceService } from '../services/cart.service';
 import { CommonModule } from '@angular/common';
@@ -13,12 +13,14 @@ import { AccountService } from '../services/account.service';
 export class HeaderComponent {
   public totalCountOfCartProducts:number=0;
   isLoggedIn = false;
- 
-  constructor(private router: Router,private cartService:CartserviceService, private accService:AccountService) {
+  userRole: string = '';
+  
+  constructor(private router: Router,private cartService:CartserviceService, private accService:AccountService, private cdr: ChangeDetectorRef) {
     this.router.events.subscribe(
       (event => {
         if(event instanceof ResolveEnd && event.urlAfterRedirects !== '/login'){
           this.isLoggedIn = true;
+          this.accService.getRoleFromToken();
         }
       })
     )
@@ -27,12 +29,25 @@ export class HeaderComponent {
   ngOnInit(){
    
    this.isLoggedIn = !!localStorage.getItem('token');
-   this.cartService.getProducts().subscribe(
-    res=>{
-      this.totalCountOfCartProducts=res.length
+   this.userRole = this.accService.getRoleFromToken();
+   
+   this.accService.role$.subscribe(role => {
+    this.userRole = role;
+    console.log('isLoggedIn:', this.isLoggedIn);
+    console.log('userRole:', this.userRole);
+
+    if (this.isLoggedIn && this.userRole === 'customer') {
+      this.cartService.getProducts().subscribe(res => {
+        this.totalCountOfCartProducts = res.length;
+        this.cdr.detectChanges();
+      });
+    } else {
+      this.cdr.detectChanges();
     }
-   )
-  }
+  });
+  
+  this.accService.getRoleFromToken();
+}
 
    
   navigateToCart() {

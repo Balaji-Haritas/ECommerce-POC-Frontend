@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Category } from '../models/category.models';
 
 @Injectable({
@@ -12,8 +12,10 @@ export class CategoryService {
 
   constructor(private http: HttpClient) { }
 
-  getCategories(): Observable<any> {
-    return this.http.get(this.baseUrl);
+  getCategories(): Observable<Category[]> {
+    return this.http.get<any>(`${this.baseUrl}`).pipe(
+      map(response => response.$values || [])
+    );
   }
 
   getProductsByCategory(categoryId: number): Observable<any> {
@@ -21,14 +23,11 @@ export class CategoryService {
   }
 
   addCategory(category: Category): Observable<Category> {
-    return this.http.post<Category>(this.baseUrl, category);
+    return this.http.post<Category>(`${this.baseUrl}`, category);
   }
-
- 
 
   deleteCategory(categoryId: number): Observable<any> {
     return this.http.delete<any>(`${this.baseUrl}/${categoryId}`);
   }
-
 
 }
