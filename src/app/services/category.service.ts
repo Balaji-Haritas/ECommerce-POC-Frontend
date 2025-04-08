@@ -13,9 +13,7 @@ export class CategoryService {
   constructor(private http: HttpClient) { }
 
   getCategories(): Observable<Category[]> {
-    return this.http.get<any>(`${this.baseUrl}`).pipe(
-      map(response => response.$values || [])
-    );
+    return this.http.get<Category[]>(`${this.baseUrl}`);
   }
 
   getProductsByCategory(categoryId: number): Observable<any> {

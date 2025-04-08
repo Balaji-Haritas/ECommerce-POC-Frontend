@@ -23,12 +23,18 @@ import { NotificationService } from '../notifications/notification.service';
   styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent {
+
 addToWishlist(_t22: Product) {
 throw new Error('Method not implemented.');
 }
-addToCart(product: Product) {
+
+addToCart(product: Product):void {
   this.cartService.addToCart(product);
-  this.notificationService.showSuccess(`Product ${product.name} has been added to the cart! Quantity: ${product.quantity}`,'Close',3000,'left','top');
+
+  const updatedProduct = this.cartService.getCartItem(product.id);
+  const updatedQuantity = updatedProduct ? updatedProduct.quantity : product.quantity;
+  
+  this.notificationService.showSuccess(`Product ${product.name} has been added to the cart! Quantity: ${updatedQuantity}`,'Close',3000,'left','top');
   this.router.navigate(['cart'])
   }
 
@@ -63,7 +69,7 @@ addToCart(product: Product) {
 
   setCategoryId(categoryId: number): void {
     if (categoryId === 0) {
-      this.products = this.allProducts; // Show all products
+      this.products = this.allProducts; 
     } else {
       this.loadProducts(categoryId);
     }

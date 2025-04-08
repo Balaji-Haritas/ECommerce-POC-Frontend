@@ -98,7 +98,7 @@ export class AddProductComponent implements OnInit {
       formData.append('file', this.selectedFile);
       formData.append('upload_preset', 'my_preset');
 
-      this.http.post(`https://api.cloudinary.com/v1_1/dnephxvbi/image/upload`, formData).subscribe(
+      this.http.post(`https://api-ap.cloudinary.com/v1_1/dnephxvbi/image/upload`, formData).subscribe(
         (response: any) => {
           const productData: Product = {
             id: this.isEditMode ? this.productForm.value.id : 0,
@@ -114,7 +114,6 @@ export class AddProductComponent implements OnInit {
             this.productService.updateProduct(productData).subscribe({
               next: (response) => {
                 this.notificationService.showSuccess("Product Updated Successfully",'Close');
-                this.router.navigate(['admin/product-managment']);
               },
               error: (err) => {
                 this.notificationService.showError("Error Updating Product",'Close');
@@ -126,7 +125,6 @@ export class AddProductComponent implements OnInit {
                 this.notificationService.showSuccess('Product submitted successfully','Close');
                 this.productForm.reset();
                 fileInput.value = '';
-                this.router.navigate(['admin/product-managment']);
               },
               error: (error) => {
                 this.notificationService.showError('Error submitting product','Close');

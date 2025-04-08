@@ -10,8 +10,9 @@ export class LoggingInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, handler: HttpHandler): Observable<HttpEvent<any>> {
         
         const token = this.accService.getToken();
+        const isApiUrl = req.url.startsWith('http://localhost:7131');
 
-        if(token){
+        if(token && isApiUrl){
             req = req.clone({
                 setHeaders:{
                     Authorization: `Bearer ${token}`

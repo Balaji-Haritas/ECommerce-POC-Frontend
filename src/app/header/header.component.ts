@@ -47,6 +47,11 @@ export class HeaderComponent {
   });
   
   this.accService.getRoleFromToken();
+
+  this.cartService.getProducts().subscribe((products) => {
+    this.totalCountOfCartProducts = products.length;
+    this.cdr.detectChanges();
+  });
 }
 
    
